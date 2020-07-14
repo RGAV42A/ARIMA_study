@@ -9,7 +9,7 @@ from sklearn import metrics
 ################################################
 
 ## data preparation from xml
-path='/home/ragav/my_python_files/folder_data/pln.xml'
+path='pln.xml'
 tree=ET.parse(path)
 root=tree.getroot()
 ### time interval
@@ -45,7 +45,7 @@ plt.scatter(xax,ts,label='Original')
 plt.legend(loc='best')
 #plt.subplot(414)
 #fig = decomposition.plot()
-plt.savefig('/home/ragav/mysite/static/images/fig.png',dpi=225)
+plt.savefig('fig.png',dpi=225)
 '''
 ### Checking for Stationary
 ## log transform
@@ -60,7 +60,7 @@ ts_log_diff.dropna(inplace=True)
 #plt.title('Trend removed plot with first order diference')
 #plt.plot(ts_log_diff)
 #plt.ylabel('First order log diff')
-#plt.savefig('/home/ragav/mysite/static/images/fig.png',dpi=125)
+#plt.savefig('fig.png',dpi=125)
 s_test=adfuller(ts_log_diff,autolag='AIC')
 print('First order difference stationary check p-value:',s_test[1])
 ### moving average smoothens the line
@@ -80,7 +80,7 @@ ax2.tick_params(axis='x',labelsize=7)
 ax2.tick_params(axis='y',labelsize=7)
 ax2.plot(moving_avg,color='red')
 plt.tight_layout()
-fig.savefig('/home/ragav/mysite/static/images/fig1.png',dpi=125)
+fig.savefig('fig1.png',dpi=125)
 '''
 ####  Autocorrelation Test
 # ACF chart
@@ -97,7 +97,7 @@ fig1=sm.graphics.tsa.plot_pacf(ts_log_diff,lags=20,ax=ax4)
 ax4.axhline(y=-1.96/np.sqrt(len(ts_log_diff)),linestyle='--',color='gray')
 ax4.axhline(y=1.96/np.sqrt(len(ts_log_diff)),linestyle='--',color='gray')
 ax4.set_xlabel('Lags')
-plt.savefig('/home/ragav/mysite/static/images/fig2.png',dpi=125)
+plt.savefig('fig2.png',dpi=125)
 
 ##### Build ARIMA Model and Evaluate
 # build model
@@ -114,7 +114,7 @@ plt.plot(xax,ts_predict,'r--',label='Predicted')
 plt.xlabel('Days')
 plt.ylabel('Exchange rate')
 plt.legend(loc='best')
-plt.savefig('/home/ragav/mysite/static/images/fig3.png',dpi=125, figsize=(8,4))
+plt.savefig('fig3.png',dpi=125, figsize=(8,4))
 #Evaluate model
 print('AIC:',results_arima.aic)
 print('BIC:',results_arima.bic)
